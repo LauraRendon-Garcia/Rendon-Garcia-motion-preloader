@@ -3,47 +3,30 @@
 import { gsap } from "gsap";
 import { Flip } from "gsap/Flip";
 import { CustomWiggle, CustomEase } from "gsap/all";
-// import { CustomWiggle } from "gsap/CustomWiggle";
+
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import { DrawSVGPlugin} from "gsap/DrawSVGPlugin";
 import { Physics2DPlugin } from "gsap/Physics2DPlugin";
-// import {GSDevTools} from "gsap/GSDevTools"
 
-
-
-
-// CustomWiggle.create("tailWiggle", {wiggles: 6});
 gsap.registerPlugin(Flip, MotionPathPlugin, DrawSVGPlugin, Physics2DPlugin, CustomWiggle, CustomEase);
-
-// const mainTL = gsap.timeline();
-// const myNum = 5;
-
-// console.log("myNum1 ="+ myNum1a);
-
-// function body(){
-//     const myNum2 = 8;
-//     console.log("myNum1 ="+ myNum1a);
-//     console.log("myNum2 ="+ myNum2);
-// }
 
 function body(){
 
     CustomWiggle.create("tailWiggle", {wiggles: 8});
-    let tl = gsap.timeline();
+    let tl = gsap.timeline({repeat: -1});
     tl.to("#logo", {duration:1,y:-100}, 'moveToTop');
-    tl.to("#tail", {duration:1,y:20, ease: "tailWiggle"}, 'moveToTop')
-    tl.to("#logo", {duration:1,y:120});
-    tl.to("#logo", {duration:1,y:0});
+    tl.to("#tail", {duration:1,y:10, ease: "tailWiggle"}, 'moveToTop')
+    tl.to("#wing", {duration:1,rotate: 30, transformOrigin: '50% 50%'}, 'moveToTop')
+    tl.to("#beak", {duration:1,x: 10}, 'moveToTop')
+    tl.to("#beak", {duration:1,rotate: 30, transformOrigin: '50% 50%'}, 'moveToTop')
+    tl.to("#beak", {duration:1,x: -10}, 'birdGoingDown')
+    tl.to("#wing", {duration:1,rotate: -20, transformOrigin: '50% 50%'}, 'birdGoingDown')
+    tl.to("#logo", {duration:1,y:120}, 'birdGoingDown');
+    tl.to("#wing", {duration:1,rotate: 0, transformOrigin: '50% 50%'}, 'birdGoesStart')
+    tl.to("#logo", {duration:1,y:0}, 'birdGoesStart');
 
     return tl; 
 
 }
-//console.log("myNum2 ="+ myNum2);
 
 body();
-
-
-// GSDevTools.create();
-
- // mainTL
- // ;
